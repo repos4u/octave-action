@@ -1,0 +1,13 @@
+version: 2
+updates:
+  # Monitor Docker base image tags and pip dependencies in Dockerfile
+  - package-ecosystem: "docker"
+    directory: "/" # Adjust if Dockerfile is in a subdirectory
+    schedule:
+      interval: "weekly"
+
+  # Monitor GitHub Actions workflows (if you use them)
+  - package-ecosystem: "github-actions"
+    directory: "/.github/workflows"
+    schedule:
+      interval: "weekly"
