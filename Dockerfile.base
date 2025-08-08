@@ -5,7 +5,7 @@
 
 # Docker images to build GNU Octave <https://www.octave.org>.
 
-ARG OCTAVE_VERSION_MAJOR=8
+ARG OCTAVE_VERSION_MAJOR=9
 FROM  gnuoctave/octave-build:${OCTAVE_VERSION_MAJOR}
 
 
@@ -22,7 +22,7 @@ RUN apt-get --yes update  && \
 
 
 # Install Octave
-ARG OCTAVE_VERSION=8.4.0
+ARG OCTAVE_VERSION=10.2.0
 ARG GNU_MIRROR=https://ftpmirror.gnu.org/octave
 RUN mkdir -p /tmp/build  \
     && cd    /tmp/build  \
