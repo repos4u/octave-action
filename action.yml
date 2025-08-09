@@ -6,11 +6,16 @@ inputs:
     description: Octave command for executing in GH runner
     required: true
     default: disp('Supply any Octave command for executing')
+  string_to_check:
+    description: String to find in output of octave. If it matches, the action has failed
+    required: false
+    default: Error
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args: # Command to be passed to the Docker container
     - ${{ inputs.command }}
+    - ${{ inputs.string_to_check }}
 branding:
   icon: 'code'
   color: 'purple'

@@ -15,3 +15,24 @@ jobs:
         uses: ./ # run action.yml from the root of this repo
         with:
           command: disp('Action is working as expected')
+          
+      - name: Test if the string_to_check works (1/2)
+        uses: ./
+        with:
+          command: disp('SUCCESS this does not match')
+          string_to_check: 'FAILED'
+          
+      - name: Test if the string_to_check works (2/2)
+        id: should-fail
+        continue-on-error: true
+        uses: ./
+        with:
+          command: disp('FAILED this does match')
+          string_to_check: 'FAILED'
+      
+      - name: Handle success of 2nd string_to_check
+        if: steps.should-fail.outcome == 'success'
+        uses: actions/github-script@v3
+        with:
+          script: |
+            core.setFailed("string_to_check 2/2 should have failed but didn't.")

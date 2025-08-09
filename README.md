@@ -23,4 +23,5 @@ jobs:
         uses: repos4u/octave-action@v1
         with:
           command: disp('Use any octave command here');
+          string_to_check: "FAILED" # optional, default is "Error"
 ```
